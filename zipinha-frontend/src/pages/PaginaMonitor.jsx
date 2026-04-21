@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { listarAtividades, deletarAtividade} from "../services/api";
-import { Header } from "../components/header";
+import { Header } from "../components/Header";
 
 export default function PaginaMonitor(){
 
