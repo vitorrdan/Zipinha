@@ -1,12 +1,14 @@
-# Zipinha
+# Zipinha 📁
 
 Sistema simples de envio de atividades de programação, com foco em programação web.
 
-O Zipinha foi pensado como uma alternativa viável, leve e de fácil entendimento para apoiar as oficinas de programação do projeto de extensão Beira Linha. A ideia é oferecer uma experiência direta para alunos e monitores, sem exigir uma interface complexa ou uma curva de aprendizado alta.
+O Zipinha foi pensado como uma alternativa viável, leve e de fácil entendimento para apoiar as oficinas de programação do projeto de extensão Beira Linha.
 
-A funcionalidade principal do sistema é o envio automático das atividades por e-mail para o monitor, facilitando o acompanhamento das entregas em tempo real.
+Na prática, o Zipinha elimina a necessidade de e-mail, número de telefone ou qualquer tipo de credencial por parte dos beneficiários para o envio das atividades, agilizando todo o processo de entrega.
 
-## Objetivo
+A funcionalidade principal do sistema é o envio automático das atividades por e-mail para o monitor, facilitando o acompanhamento das entregas em tempo real. 📩
+
+## 🎯 Objetivo
 
 O sistema permite que o aluno envie uma atividade com:
 
@@ -16,21 +18,21 @@ O sistema permite que o aluno envie uma atividade com:
 
 Do outro lado, o monitor consegue visualizar as entregas recebidas e remover registros quando necessário.
 
-No futuro, essa funcionalidade pode ser expandida para criar automaticamente pastas no Google Drive e no Workspace, permitindo que os monitores acessem simultaneamente as atividades entregues em um ambiente centralizado.
+No futuro, essa funcionalidade pode ser expandida para criar automaticamente pastas no Google Drive e no Workspace, permitindo que os monitores acessem simultaneamente as atividades entregues em um ambiente centralizado. ☁️
 
-## Estrutura do projeto
+## 🧩 Estrutura do projeto
 
 O repositório está organizado em duas partes:
 
 - `backend/`: API responsável por receber, listar e gerenciar as entregas
 - `zipinha-frontend/`: interface web em React para alunos e monitores
 
-## Tecnologias usadas
+## 🛠️ Tecnologias usadas
 
 - Frontend: React, Vite, Tailwind CSS, Axios
 - Backend: Node.js, Express, SQLite, Multer, CORS, Nodemailer
 
-## Como executar localmente
+## ▶️ Como executar localmente
 
 ### 1. Backend
 
@@ -66,7 +68,7 @@ npm run dev
 
 O frontend normalmente fica disponível em `http://localhost:5173`.
 
-## Funcionalidades principais
+## ✅ Funcionalidades principais
 
 - envio de atividade pelo aluno
 - envio automático de e-mail com as atividades para o monitor
@@ -74,10 +76,10 @@ O frontend normalmente fica disponível em `http://localhost:5173`.
 - listagem das entregas recebidas
 - remoção de entregas pelo monitor
 
-## Contexto de uso
+## 🤝 Contexto de uso
 
 Este projeto foi desenvolvido para atender oficinas de programação web dentro do projeto de extensão Beira Linha, funcionando como uma solução prática para coleta de atividades e acompanhamento das entregas em sala.
 
-## Observação
+## 📌 Observação
 
 Se o projeto for usado em outro computador, verifique as variáveis de ambiente do backend e a URL liberada para o frontend, caso seja necessário ajustar a comunicação entre as partes.
