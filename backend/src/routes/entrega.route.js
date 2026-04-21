@@ -63,8 +63,6 @@ const upload = multer({
 // upload.single = middlware ajuda o express a processar o arquivo
 router.post('/upload', upload.single('arquivo'), verificaCodigo,  async(req, res) => {
 
-    console.log('entrei /upload no back')
-
     //se o Multer nao encontrou arquivo nenhum (multer separa a req = texto + arquivo)
     if(!req.file){
         return res.status(400).json({erro: 'Nenhum arquivo enviado !'})
@@ -121,6 +119,9 @@ router.get('/atividades', verificaMonitor, (req, res) => {
 //Rota p/ DELETE das ATIVIDADES
 router.delete('/atividades/:id', verificaMonitor, (req, res) => {
     const entrega = deleteEntrega(req.params.id)
+    
+    console.log(`Entrega ${entrega.id} deletada - ${entrega.aluno} - ${entrega.atividade}`)
+
     res.json({mensagem: `Entrega ${entrega.atividade} deletada !`})
 })
 
