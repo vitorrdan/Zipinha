@@ -24,14 +24,13 @@ export default function PaginaMonitor(){
         
         try{
             setLoading(true)
-
             const dados = await listarAtividades(senha)
             setEntregas(dados)
             setSucesso(true)
             setAutenticado(true)
 
         } catch(err){
-            const mensagem = 'Erro ao listar atividades'
+            const mensagem = 'Senha inválida'
             setError(mensagem)
         } finally {
             setLoading(false)
@@ -133,17 +132,17 @@ export default function PaginaMonitor(){
 
 
     return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header titulo="Área do Monitor" subtitulo="Programação Web" />
 
-        {/* Header */}
-        <Header titulo={"Área do monitor"} subtitulo={"Programação web"} />
+      <div className="flex-1 px-8 py-10 max-w-6xl w-full mx-auto">
 
-        <div className="mt-6">
-         <div className="flex items-center justify-between mb-6 ">
+        <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-medium text-gray-800">Entregas</h1>
-            <p className="text-gray-400 text-sm mt-1">{entregas.length} entrega{entregas.length !== 1 ? 's' : ''} recebida{entregas.length !== 1 ? 's' : ''}</p>
+            <h2 className="text-2xl font-medium text-gray-800">Entregas</h2>
+            <p className="text-gray-400 text-sm mt-1">
+              {ordenaEntregas().length} entrega{ordenaEntregas().length !== 1 ? 's' : ''} recebida{ordenaEntregas().length !== 1 ? 's' : ''}
+            </p>
           </div>
           <button
             onClick={() => setAutenticado(false)}
@@ -152,10 +151,8 @@ export default function PaginaMonitor(){
             Sair
           </button>
         </div>
-       </div>
 
-        {/* Filtros de ordenação */}
-        <div className="flex gap-2 mb-4">
+        <div className="flex gap-2 mb-6">
           {['data', 'aluno', 'atividade'].map((opcao) => (
             <button
               key={opcao}
@@ -171,9 +168,8 @@ export default function PaginaMonitor(){
           ))}
         </div>
 
-        {/* Tabela */}
         <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden">
-          {entregas.length === 0 ? (
+          {ordenaEntregas().length === 0 ? (
             <div className="p-12 text-center">
               <p className="text-gray-400 text-sm">Nenhuma entrega ainda.</p>
             </div>
@@ -185,32 +181,42 @@ export default function PaginaMonitor(){
                   <th className="text-left text-xs font-medium text-gray-400 uppercase tracking-wide px-6 py-4">Atividade</th>
                   <th className="text-left text-xs font-medium text-gray-400 uppercase tracking-wide px-6 py-4">Arquivo</th>
                   <th className="text-left text-xs font-medium text-gray-400 uppercase tracking-wide px-6 py-4">Data</th>
-                  <th className="text-left text-xs font-medium text-gray-400 uppercase tracking-wide px-6 py-4"></th>
+                  <th className="px-6 py-4"></th>
                 </tr>
               </thead>
-                <tbody>
-                {ordenaEntregas()
-                .filter(e => !deletado.includes(e.id))
-                .map((entrega) => (
+              <tbody>
+                {ordenaEntregas().map((entrega) => (
                   <tr key={entrega.id} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 text-sm text-gray-700 font-medium">{entrega.aluno}</td>
                     <td className="px-6 py-4 text-sm text-gray-500">{entrega.atividade}</td>
                     <td className="px-6 py-4 text-sm text-gray-400">{entrega.arquivo_nome}</td>
                     <td className="px-6 py-4 text-sm text-gray-400">{formatarData(entrega.criado_em)}</td>
                     <td className="px-6 py-4">
-                    <button onClick={() => handleDeletar(entrega.id)}
-                    className="text-xs text-red-400 hover:text-red-600 transition-colors"
-                    >Remover</button>
-                    </td> 
+                      <button
+                        onClick={() => handleDeletar(entrega.id)}
+                        className="text-xs text-red-400 hover:text-red-600 transition-colors"
+                      >
+                        remover
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           )}
         </div>
-
       </div>
+
+      <Footer />
     </div>
   )
-    
+}
+
+function Footer() {
+  return (
+    <footer className="bg-stone-100 border-t border-stone-200 px-8 py-4 flex items-center justify-between">
+      <span className="text-xs text-stone-400">Projeto Beira Linha — PUC Minas</span>
+      <span className="text-xs text-stone-400">Programação Web</span>
+    </footer>
+  )
 }

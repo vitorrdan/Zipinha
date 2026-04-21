@@ -73,71 +73,62 @@ export default function PaginaAluno(){
     }
 
     return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-250 ">
+   <div className="min-h-screen flex flex-col bg-gray-50">
+      <Header titulo="Área do Aluno" subtitulo="Programação Web" />
 
-        {/* Header */}
-        <Header titulo={"Área do Aluno"} subtitulo={"Programação web"} />
-          
-        <div className="mt-6 mb-6">
-          <h1 className="text-2xl font-medium text-gray-800">Entrega de atividades</h1>
-          <p>Preencha os campos abaixo e anexe seu arquivo para entregar.</p>
+      <div className="flex-1 px-8 py-10 max-w-2xl w-full mx-auto">
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-medium text-gray-800">Entrega de atividades</h2>
+          <p className="text-gray-400 text-sm mt-1">Preencha os campos abaixo e anexe seu arquivo para entregar.</p>
         </div>
 
-        {/* Campos */}
-        <div className="space-y-4">
+        <div className="space-y-6">
+
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-1">
-              Seu nome
-            </label>
+            <label className="block text-sm font-medium text-gray-600 mb-2">Seu nome</label>
             <input
               type="text"
               placeholder="Ex: Maria Eduarda"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-290 text-sm focus:outline-none focus:border-teal-400 transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-teal-400 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-1">
-              Nome da atividade
-            </label>
+            <label className="block text-sm font-medium text-gray-600 mb-2">Nome da atividade</label>
             <input
               type="text"
               placeholder="Ex: Aula 3 – Formulários HTML"
               value={atividade}
               onChange={(e) => setAtividade(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-290 text-sm focus:outline-none focus:border-teal-400 transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-teal-400 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-1">
-              Código da aula
-            </label>
+            <label className="block text-sm font-medium text-gray-600 mb-2">Código da aula</label>
             <input
               type="text"
               placeholder="Digite o código que está no quadro"
               value={codigoAula}
               onChange={(e) => setCodigoAula(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-290 text-sm focus:outline-none focus:border-teal-400 transition-colors"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:outline-none focus:border-teal-400 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-600 mb-1">
-              Arquivo(s)
-            </label>
-            <label className="w-full flex flex-col items-center justify-center px-4 py-8 rounded-xl border-2 border-dashed border-gray-290 cursor-pointer hover:border-teal-400 transition-colors">
-              <svg className="w-8 h-8 text-gray-300 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <label className="block text-sm font-medium text-gray-600 mb-2">Arquivo(s)</label>
+            <label className="w-full flex flex-col items-center justify-center px-4 py-12 rounded-xl border-2 border-dashed border-gray-200 cursor-pointer hover:border-teal-400 bg-white transition-colors">
+              <svg className="w-10 h-10 text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
               </svg>
               {arquivo ? (
                 <span className="text-sm text-teal-600 font-medium">{arquivo.name}</span>
               ) : (
                 <>
-                  <span className="text-sm text-gray-400">Clique para selecionar</span>
+                  <span className="text-sm text-gray-500">Clique para selecionar</span>
                   <span className="text-xs text-gray-300 mt-1">ZIP, HTML, CSS, JS — até 50MB</span>
                 </>
               )}
@@ -151,25 +142,34 @@ export default function PaginaAluno(){
 
         </div>
 
-        {/* Erro */}
         {erro && (
-          <div className="mt-4 p-3 bg-red-50 rounded-xl">
+          <div className="mt-6 p-4 bg-red-50 rounded-xl">
             <p className="text-red-600 text-sm">{erro}</p>
           </div>
         )}
 
-        {/* Botão */}
         <button
           onClick={handleEnviar}
           disabled={loading}
-          className="w-40 mt-6 py-3 bg-teal-500 hover:bg-teal-600 disabled:bg-teal-300 text-white rounded-xl text-sm font-medium transition-colors"
+          className="w-full mt-8 py-4 bg-teal-500 hover:bg-teal-600 disabled:bg-teal-300 text-white rounded-xl text-sm font-medium transition-colors"
         >
           {loading ? 'Enviando...' : 'Enviar atividade'}
         </button>
 
       </div>
+
+      <Footer />
     </div>
-    )
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="bg-stone-100 border-t border-stone-200 px-8 py-4 flex items-center justify-between">
+      <span className="text-xs text-stone-400">Projeto Beira Linha — PUC Minas</span>
+      <span className="text-xs text-stone-400">Programação Web</span>
+    </footer>
+  )
 
 }
 
