@@ -8,18 +8,6 @@ Na prática, o Zipinha elimina a necessidade de e-mail, número de telefone ou q
 
 A funcionalidade principal do sistema é o envio automático das atividades por e-mail para o monitor, facilitando o acompanhamento das entregas em tempo real. 📩
 
-## 🎯 Objetivo
-
-O sistema permite que o aluno envie uma atividade com:
-
-- nome do aluno
-- nome da atividade
-- arquivo anexado
-
-Do outro lado, o monitor consegue visualizar as entregas recebidas e remover registros quando necessário.
-
-No futuro, essa funcionalidade pode ser expandida para criar automaticamente pastas no Google Drive e no Workspace, permitindo que os monitores acessem simultaneamente as atividades entregues em um ambiente centralizado. ☁️
-
 ## 🧩 Estrutura do projeto
 
 O repositório está organizado em duas partes:
