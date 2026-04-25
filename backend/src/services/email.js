@@ -40,12 +40,13 @@ async function enviarEmailEntrega({ aluno, atividade, arquivoPath, arquivoNome }
           <td>${dataFormatada}</td>
         </tr>
       </table>
+      <p style="color:#888; font-size:12px;"> Arquivo foi renomeado para passar pelo filtro do gmail. Altere para .zip </p>
     `,
 
     // Arquivo como anexo
     attachments: [
       {
-        filename: arquivoNome,
+        filename: arquivoNome.replace('.zip', '.zipx'),
         path: arquivoPath   // caminho do arquivo temporário
       }
     ]
