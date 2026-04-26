@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-async function enviarEmailEntrega({ aluno, atividade, arquivoPath, arquivoNome }) {
+async function enviarEmailEntrega({ aluno, atividade, arquivoNome, arquivoUrl }) {
   const dataFormatada = new Date().toLocaleString('pt-BR', {
     timeZone: 'America/Sao_Paulo'
   })
@@ -39,17 +39,20 @@ async function enviarEmailEntrega({ aluno, atividade, arquivoPath, arquivoNome }
           <td><strong>Data/hora:</strong></td>
           <td>${dataFormatada}</td>
         </tr>
+        <tr>
+          <td><strong>Download:</strong></td>
+          <td><a href="${arquivoUrl}">Clique aqui para baixar</a></td>
+        </tr>
       </table>
-      <p style="color:#888; font-size:12px;"> Arquivo foi renomeado para passar pelo filtro do gmail. Altere para .zip </p>
     `,
 
-    // Arquivo como anexo
+    /* Arquivo como anexo
     attachments: [
       {
         filename: arquivoNome.replace('.zip', '.zipx'),
         path: arquivoPath   // caminho do arquivo temporário
       }
-    ]
+    ]*/
   }
 
   await transporter.sendMail(mailOptions)

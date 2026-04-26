@@ -7,7 +7,7 @@ const { salvarEntrega, listarEntregas, deleteEntrega } = require('../services/da
 const { enviarEmailEntrega } = require('../services/email')
 const { verificaCodigo } = require('../middlewares/authAluno')
 const { verificaMonitor } = require('../middlewares/AuthMonitor')
-
+const { uploadParaCloudinary } = require('../services/cloudinary')
 
 
 const router = express.Router()
@@ -76,12 +76,16 @@ router.post('/upload', upload.single('arquivo'), verificaCodigo,  async(req, res
     }
 
     try{
+        //Upload pro Cloudinary
+        const arquivoUrl = await uploadParaCloudinary(req.file.path, req.file.originalname)
+        console.log(arquivoUrl)
+
        // Manda o e-mail com o arquivo anexado
         await enviarEmailEntrega({
             aluno,
             atividade,
-            arquivoPath: req.file.path,
-            arquivoNome: req.file.originalname
+            arquivoNome: req.file.originalname,
+            arquivoUrl
         })
 
         // Salva o registro no banco
@@ -89,12 +93,12 @@ router.post('/upload', upload.single('arquivo'), verificaCodigo,  async(req, res
             aluno,
             atividade,
             arquivo_nome: req.file.originalname,
-            drive_url: 'enviado por e-mail'
+            drive_url: arquivoUrl
         })
 
         // Deleta o arquivo temporário depois de anexar no e-mail
         const fs = require('fs')
-        fs.unlinkSync(req.file.path)
+        //fs.unlinkSync(req.file.path)
 
         console.log(`Entrega #${id} salva — ${aluno} — ${atividade}`)
 
